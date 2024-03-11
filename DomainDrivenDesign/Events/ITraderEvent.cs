@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DomainDrivenDesign.Events
 {
-    public interface IDomainEvents
+    public interface ITraderEvent
     {
-
+        public sealed record TraderCreatedEvent(Guid UserId) : IDomainEvents;
     }
 }

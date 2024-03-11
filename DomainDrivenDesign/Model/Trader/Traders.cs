@@ -1,10 +1,6 @@
 ﻿using DomainDrivenDesign.HelperMethods;
 using DomainDrivenDesign.Model.Broker;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static DomainDrivenDesign.Events.ITraderEvent;
 
 namespace DomainDrivenDesign.Model.Trader
 {
@@ -14,7 +10,6 @@ namespace DomainDrivenDesign.Model.Trader
         {
             TraderName = name;
         }
-
         public BrokerCode BrokerCode { get; private set; }
         public TraderId TraderId { get; private set; }
         public TraderName TraderName { get; private set; }
@@ -25,6 +20,8 @@ namespace DomainDrivenDesign.Model.Trader
         public static Traders Create(TraderName name)
         {
             var user = new Traders(Guid.NewGuid(), name);
+
+            user.RaiseEvent(new TraderCreatedEvent(user.Id));
 
             return user;
         }
@@ -67,4 +64,5 @@ namespace DomainDrivenDesign.Model.Trader
             return new TraderId(value);
         }
     }
+
 }
