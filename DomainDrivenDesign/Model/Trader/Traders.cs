@@ -1,5 +1,6 @@
 ﻿using DomainDrivenDesign.HelperMethods;
 using DomainDrivenDesign.Model.Broker;
+using DomainDrivenDesign.Utilities.HelperMethod;
 using static DomainDrivenDesign.Events.ITraderEvent;
 
 namespace DomainDrivenDesign.Model.Trader
@@ -33,8 +34,21 @@ namespace DomainDrivenDesign.Model.Trader
     {
         public TraderName(string? name)
         {
-            ArgumentException.ThrowIfNullOrEmpty(name, nameof(name));
-            ArgumentException.ThrowIfNullOrWhiteSpace(name, nameof(name));
+            //Extension method to for null checks
+
+            Ensure.NotNullOrEmpty(name);
+
+            //Does the same as the extension method above
+
+            //if (string.IsNullOrEmpty(name))
+            //{
+            //    throw new ArgumentNullException("value");
+            //}
+
+            //if (string.IsNullOrEmpty(name))
+            //{
+            //    throw new ArgumentNullException("value");
+            //}
 
             Name = name;
         }
