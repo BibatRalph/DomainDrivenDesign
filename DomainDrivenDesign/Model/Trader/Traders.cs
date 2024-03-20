@@ -11,6 +11,7 @@ namespace DomainDrivenDesign.Model.Trader
         {
             TraderName = name;
         }
+
         public BrokerCode BrokerCode { get; private set; }
         public TraderId TraderId { get; private set; }
         public TraderName TraderName { get; private set; }

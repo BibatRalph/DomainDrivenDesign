@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DomainDrivenDesign.Model.Trader;
+using DomainDrivenDesign.Utilities.HelperMethod;
 
 namespace DomainDrivenDesign.Model.Broker
 {
@@ -12,11 +9,13 @@ namespace DomainDrivenDesign.Model.Broker
 
         public string BrokerName { get; private set; } = string.Empty;
 
+        public List<Traders> BrokerTraderList { get; private set; } 
+
     }
 
     public record BrokerCode
     {
-        private BrokerCode(string value) => Value = value;
+        public BrokerCode(string value) => Value = value;
 
         public string Value { get; init; }
 
@@ -24,8 +23,7 @@ namespace DomainDrivenDesign.Model.Broker
 
         public static BrokerCode? Create (string value)
         {
-            ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
-            ArgumentException.ThrowIfNullOrWhiteSpace (value, nameof(value));
+            Ensure.NotNullOrEmpty(value);
 
             if (value.Length != MinimumLenght)
             {
